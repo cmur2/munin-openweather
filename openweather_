@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+#
+# Example config:
+#  [finance_*]
+#
+
+require 'rubygems'
+require 'json'
+
+require 'open-uri'
+
+script = File.basename($0)
+@entity_type, @entity_id = script.gsub('openweather_', '').split('_')
+@cmd = ARGV[0]
+
+# open stderr
+$stderr = IO.new(2, "w")
+
+def uri(entity_type, entity_id)
+	"http://openweathermap.org/data/#{entity_type}/#{entity_id}?type=json"
+end
+
+raw_data = open(uri(@entity_type, @entity_id)).read
+data = JSON.parse(raw_data)
+
+#puts data.inspect
+
+def echo_price(station_id, name, temp)
+	case @cmd
+	when 'config'
+		puts "graph_title Temperature at #{name}"
+		puts "graph_args --lower-limit 0"
+		puts "graph_vlabel Celsius"
+		puts "graph_category weather"
+		puts "graph_scale no"
+		puts "graph_info This graph show the temperature at #{name}"
+		puts "temperature.label temperature"
+		puts "temperature.info Temperature in degree Celsius"
+		puts "temperature.type GAUGE"
+	else
+		puts "temperature.value #{temp}"
+	end
+end
+
+echo_price(data['station_id'], data['name'], data['temp'])
