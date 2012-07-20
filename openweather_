@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# Source: https://github.com/cmur2/munin-openweather
+
 # Example usage:
 #  Do
 #    ln -s /path/to/openweather_ openweather_<type>_<id>
