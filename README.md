@@ -2,7 +2,7 @@ munin-openweather
 =================
 
 Creates Munin graphs from the data at [Open Weather Map](http://openweathermap.org/) which are extracted
-via their (JSON-API)[http://openweathermap.org/example-json].
+via their [JSON-API](http://openweathermap.org/example-json).
 
 Note: Against their statement "temp - Temperature in Kelvin." the temperatures are **not** in Kelvin but degree Celsius!
 
