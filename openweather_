@@ -1,8 +1,15 @@
 #!/usr/bin/env ruby
 
+# Example usage:
+#  Do
+#    ln -s /path/to/openweather_ openweather_<type>_<id>
+#  where <type> is one of [station, weather] and <id> is a suitable
+#  station or city id from http://openweathermap.org/
+#  These parameters translate directly into a URL formed like this:
+#    http://openweathermap.org/data/<type>/<id>?type=json
 #
 # Example config:
-#  [finance_*]
+#  [openweather_*]
 #
 
 require 'rubygems'
@@ -26,7 +33,7 @@ data = JSON.parse(raw_data)
 
 #puts data.inspect
 
-def echo_price(station_id, name, temp)
+def echo_weather(station_id, name, temp)
 	case @cmd
 	when 'config'
 		puts "graph_title Temperature at #{name}"
@@ -43,4 +50,4 @@ def echo_price(station_id, name, temp)
 	end
 end
 
-echo_price(data['station_id'], data['name'], data['temp'])
+echo_weather(data['station_id'], data['name'], data['temp'])
