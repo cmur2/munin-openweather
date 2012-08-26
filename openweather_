@@ -20,6 +20,7 @@ require 'json'
 require 'open-uri'
 
 KELVIN_BIAS = 273.15
+SYMLINK_COMPAT = true
 
 script = File.basename($0)
 @entity_type, @entity_id = script.gsub('openweather_', '').split('_')
@@ -29,6 +30,7 @@ script = File.basename($0)
 $stderr = IO.new(2, "w")
 
 def uri(entity_type, entity_id)
+	entity_type = "city" if entity_type == "weather" and SYMLINK_COMPAT
 	"http://openweathermap.org/data/2.0/weather/#{entity_type}/#{entity_id}?type=json"
 end
 
