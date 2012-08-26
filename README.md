@@ -9,8 +9,8 @@ Temperatures are now given in Kelvin and this plugin uses an offset of 273.15 to
 Upgrading
 ---------
 
-If you're using a version prios to [this one](https://github.com/cmur2/munin-openweather/commit/115fb0875f41dc6e493963ca0cbfe2700c31c2ad)
-you have to rename your symlinks of <type> "weather" to "city".
+If you're using version [115fb0875f](https://github.com/cmur2/munin-openweather/commit/115fb0875f41dc6e493963ca0cbfe2700c31c2ad)
+or prior you have to rename your symlinks of <type> "weather" to "city"!
 
 Install
 -------
@@ -25,3 +25,8 @@ where <type> is one of [station, city] and <id> is a suitable station or city id
 the detail page for this station by clicking on it - your URL should contain the id then.)
 
 **Don't forget to restart your munin-node deamon.**
+
+License
+-------
+
+[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
