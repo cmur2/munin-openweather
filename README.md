@@ -10,7 +10,7 @@ Upgrading
 ---------
 
 If you're using version [115fb0875f](https://github.com/cmur2/munin-openweather/commit/115fb0875f41dc6e493963ca0cbfe2700c31c2ad)
-or prior you might consider renaming your symlinks of <type> "weather" to "city" - by default the script
+or prior you might consider renaming your symlinks from <type> "weather" to "city" - by default the script
 will do rename internally for compatibility reasons (SYMLINK_COMPAT flag true).
 
 Install
@@ -21,7 +21,7 @@ symlink as *root* in /etc/munin/plugins by using e.g.:
 
 	cd /etc/munin/plugins; ln -s /path/to/openweather_ openweather_<type>_<id>
 
-where <type> is one of [station, city] and <id> is a suitable station or city id.
+where <type> is one of [station, weather] and <id> is a suitable station or city id.
 (You can easily get the ID when you navigate to your station/city of interest and open
 the detail page for this station by clicking on it - your URL should contain the id then.)
 
