@@ -34,11 +34,6 @@ def uri(entity_type, entity_id)
 	"http://openweathermap.org/data/2.1/weather/#{entity_type}/#{entity_id}?type=json"
 end
 
-raw_data = open(uri(@entity_type, @entity_id)).read
-data = JSON.parse(raw_data)
-
-#puts data.inspect
-
 def echo_weather(station_id, name, temp)
 	case @cmd
 	when 'config'
@@ -56,4 +51,11 @@ def echo_weather(station_id, name, temp)
 	end
 end
 
-echo_weather(data['id'], data['name'], data['main']['temp']-KELVIN_BIAS)
+begin
+	raw_data = open(uri(@entity_type, @entity_id)).read
+	data = JSON.parse(raw_data)
+	#puts data.inspect
+	echo_weather(data['id'], data['name'], data['main']['temp']-KELVIN_BIAS)
+rescue => ex
+	$stderr.puts "Cannot connect to openweathermap.org: #{ex.to_s}"
+end
