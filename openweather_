@@ -5,10 +5,11 @@
 # Example usage:
 #  Do
 #    ln -s /path/to/openweather_ openweather_<type>_<id>
-#  where <type> is one of [station, weather] and <id> is a suitable
-#  station or city id from http://openweathermap.org/
+#  where <type> is currently ignored (formerly one of
+#  [station, weather]) and <id> is a suitable
+#  city id from http://openweathermap.org/
 #  These parameters translate directly into a URL formed like this:
-#    http://openweathermap.org/data/<type>/<id>?type=json
+#    http://openweathermap.org/data/<api>/weather?id=<id>
 #
 # Example config:
 #  [openweather_*]
@@ -31,7 +32,7 @@ $stderr = IO.new(2, "w")
 
 def uri(entity_type, entity_id)
 	entity_type = "city" if entity_type == "weather" and SYMLINK_COMPAT
-	"http://openweathermap.org/data/2.1/weather/#{entity_type}/#{entity_id}?type=json"
+	"http://openweathermap.org/data/2.5/weather?id=#{entity_id}"
 end
 
 def echo_weather(station_id, name, temp)
